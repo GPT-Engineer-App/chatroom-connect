@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Box, VStack, HStack, Text, Input, Button, Avatar, Divider, Heading } from "@chakra-ui/react";
 import { FaPaperPlane } from "react-icons/fa";
+import MapBackground from "../components/MapBackground";
 
 const Index = () => {
   const [messages, setMessages] = useState([]);
@@ -19,7 +20,9 @@ const Index = () => {
   };
 
   return (
-    <Box bg="gray.100" minH="100vh">
+    <Box position="relative" minH="100vh">
+      <MapBackground />
+      <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="rgba(255, 255, 255, 0.8)" />
       <Box maxW="600px" mx="auto" py={8}>
         <Heading textAlign="center" mb={8}>
           Chatroom App
