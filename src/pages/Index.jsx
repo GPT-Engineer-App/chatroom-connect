@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Box, VStack, HStack, Text, Input, Button, Avatar, Divider, Heading } from "@chakra-ui/react";
-import { FaPaperPlane } from "react-icons/fa";
-import MapBackground from "../components/MapBackground";
+import { Box, VStack, HStack, Text, Input, Button, Avatar, Divider, Heading, IconButton } from "@chakra-ui/react";
+import { FaPaperPlane, FaMapMarkerAlt } from "react-icons/fa";
+import MapView from "../components/MapView";
 
 const Index = () => {
   const [messages, setMessages] = useState([]);
@@ -19,14 +19,26 @@ const Index = () => {
     }
   };
 
+  const [showMap, setShowMap] = useState(false);
+
   return (
     <Box position="relative" minH="100vh">
-      <MapBackground />
-      <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="rgba(255, 255, 255, 0.8)" />
-      <Box maxW="600px" mx="auto" py={8}>
-        <Heading textAlign="center" mb={8}>
-          Chatroom App
-        </Heading>
+      {showMap ? (
+        <MapView onClose={() => setShowMap(false)} />
+      ) : (
+        <>
+          <IconButton aria-label="Open Map" icon={<FaMapMarkerAlt />} position="absolute" top={2} left={2} zIndex="docked" onClick={() => setShowMap(true)} />
+          <Box position="absolute" top={0} left={0} right={0} bottom={0} bg="rgba(255, 255, 255, 0.8)" />
+          <Box maxW="600px" mx="auto" py={8}>
+            {}
+          </Box>
+        </>
+      )}
+      <Heading textAlign="center" mb={8}>
+        Chatroom App
+      </Heading>
+      <Box position="relative">
+        <IconButton aria-label="Open Map" icon={<FaMapMarkerAlt />} position="absolute" top={2} left={2} onClick={() => setShowMap(true)} />
         <Box bg="white" borderRadius="md" p={4} boxShadow="md">
           <Box overflowY="auto" maxH="400px" mb={4}>
             <VStack spacing={4} align="stretch">
